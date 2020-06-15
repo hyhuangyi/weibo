@@ -21,7 +21,7 @@ import java.util.List;
 /**
  *IP代理池
  */
-@Component
+//@Component
 @Slf4j
 public class IpPool {
 
