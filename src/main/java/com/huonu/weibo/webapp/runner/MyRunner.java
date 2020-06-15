@@ -21,7 +21,7 @@ public class MyRunner implements CommandLineRunner {
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1")
                     .addPipeline(new CSDNPipLine())
                     .setDownloader(Downloader.newIpDownloader())
-                    .thread(1).runAsync();
+                    .thread(3).runAsync();
 
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/2")
                     .addPipeline(new CSDNPipLine())
