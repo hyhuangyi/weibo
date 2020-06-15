@@ -17,7 +17,7 @@ public class MyRunner implements CommandLineRunner {
         int num=0;
         while (true){
             log.error("第"+ ++num+"次执行");
-            Thread.sleep(60*1000);
+            Thread.sleep(30*1000);
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1")
                     .addPipeline(new CSDNPipLine())
                     .setDownloader(Downloader.newIpDownloader())
@@ -26,7 +26,7 @@ public class MyRunner implements CommandLineRunner {
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/2")
                     .addPipeline(new CSDNPipLine())
                     .setDownloader(Downloader.newIpDownloader())
-                    .thread(1).runAsync();
+                    .thread(3).runAsync();
         }
     }
 }
