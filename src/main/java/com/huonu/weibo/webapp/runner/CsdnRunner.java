@@ -5,13 +5,13 @@ import com.huonu.weibo.webapp.webMagic.magic.CSDN;
 import com.huonu.weibo.webapp.webMagic.base.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestController;
 import us.codecraft.webmagic.Spider;
 
 @RestController
-@RequestMapping("/property")
 @Slf4j
+@Order(2)
 public class CsdnRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {

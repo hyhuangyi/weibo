@@ -2,6 +2,7 @@ package com.huonu.weibo.webapp.webMagic.magic;
 
 import com.huonu.weibo.webapp.webMagic.base.Agents;
 import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
+import com.huonu.weibo.webapp.webMagic.pipLine.WeiBoFansPIpLIne;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -37,7 +38,7 @@ public class WeiboFans implements PageProcessor {
 
     public static void main(String[] args) {
         Spider.create(new WeiboFans()).addUrl("https://m.weibo.cn/api/attitudes/show?id=4516021828714033&page=1").
-                addPipeline(new JsonFilePipeline("/home/webmagic"))
+                addPipeline(new WeiBoFansPIpLIne())
                 .setDownloader(ProxyDownloader.newIpDownloader())
                 .thread(1).runAsync();
     }
