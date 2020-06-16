@@ -86,7 +86,7 @@ public class ProxyDownloader {
                 return charset;
             }
         };
-        downloader.setProxyProvider(SimpleProxyProvider.from(new Proxy("183.167.217.152",63000)));
+        //downloader.setProxyProvider(SimpleProxyProvider.from(new Proxy("183.167.217.152",63000)));
         return downloader;
     }
     /**
