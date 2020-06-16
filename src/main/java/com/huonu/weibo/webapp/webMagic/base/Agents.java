@@ -1,4 +1,4 @@
-package com.huonu.weibo.webapp.comm;
+package com.huonu.weibo.webapp.webMagic.base;
 
 import lombok.extern.slf4j.Slf4j;
 import java.io.BufferedReader;

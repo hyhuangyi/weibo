@@ -1,4 +1,4 @@
-package com.huonu.weibo.webapp.webTask;
+package com.huonu.weibo.webapp.webMagic.magic;
 
 import us.codecraft.webmagic.*;
 import us.codecraft.webmagic.pipeline.JsonFilePipeline;

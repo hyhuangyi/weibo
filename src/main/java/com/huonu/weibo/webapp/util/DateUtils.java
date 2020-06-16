@@ -661,9 +661,4 @@ public class DateUtils {
         System.out.println(getNearlyPeriod(1,true));
         System.out.println(strToDate("2018-8-9"));
     }*/
-
-    public static void main(String[] args) {
-       String a="06月11日 06:33";
-       System.out.println(a.substring(0,12).replace("月","-").replace("日",""));
-    }
 }

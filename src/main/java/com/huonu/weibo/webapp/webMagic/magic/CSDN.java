@@ -1,6 +1,7 @@
-package com.huonu.weibo.webapp.webTask;
+package com.huonu.weibo.webapp.webMagic.magic;
 
-import com.huonu.weibo.webapp.comm.*;
+import com.huonu.weibo.webapp.webMagic.base.*;
+import com.huonu.weibo.webapp.webMagic.pipLine.CSDNPipLine;
 import lombok.extern.slf4j.Slf4j;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

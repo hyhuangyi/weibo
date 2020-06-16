@@ -1,6 +1,7 @@
-package com.huonu.weibo.webapp.webTask;
+package com.huonu.weibo.webapp.webMagic.magic;
 
-import com.huonu.weibo.webapp.comm.*;
+import com.huonu.weibo.webapp.webMagic.base.*;
+import com.huonu.weibo.webapp.webMagic.pipLine.WeiboPipLine;
 import com.huonu.weibo.webapp.util.DateUtils;
 import com.huonu.weibo.webapp.util.RegexUtils;
 import lombok.Data;

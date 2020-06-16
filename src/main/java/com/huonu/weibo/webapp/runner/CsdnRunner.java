@@ -1,7 +1,8 @@
 package com.huonu.weibo.webapp.runner;
 
-import com.huonu.weibo.webapp.webTask.CSDN;
-import com.huonu.weibo.webapp.comm.*;
+import com.huonu.weibo.webapp.webMagic.pipLine.CSDNPipLine;
+import com.huonu.weibo.webapp.webMagic.magic.CSDN;
+import com.huonu.weibo.webapp.webMagic.base.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,7 @@ import us.codecraft.webmagic.Spider;
 @RestController
 @RequestMapping("/property")
 @Slf4j
-public class MyRunner implements CommandLineRunner {
+public class CsdnRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         int num=0;

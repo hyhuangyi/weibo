@@ -1,7 +1,7 @@
-package com.huonu.weibo.webapp.webTask;
+package com.huonu.weibo.webapp.webMagic.magic;
 
-import com.huonu.weibo.webapp.comm.Agents;
-import com.huonu.weibo.webapp.comm.ProxyDownloader;
+import com.huonu.weibo.webapp.webMagic.base.Agents;
+import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;

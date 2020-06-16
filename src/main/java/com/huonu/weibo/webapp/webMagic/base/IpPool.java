@@ -1,4 +1,4 @@
-package com.huonu.weibo.webapp.comm;
+package com.huonu.weibo.webapp.webMagic.base;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;

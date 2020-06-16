@@ -1,4 +1,4 @@
-package com.huonu.weibo.webapp.comm;
+package com.huonu.weibo.webapp.webMagic.pipLine;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -9,10 +9,10 @@ import us.codecraft.webmagic.utils.FilePersistentBase;
 
 @Component
 @Slf4j
-public class WeiboPipLine extends FilePersistentBase implements Pipeline {
+public class CSDNPipLine extends FilePersistentBase implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         //拿到数据 可以存redis或者mysql
-       log.info(resultItems.get("list"));
+       log.info(resultItems.get("Title"));
     }
 }
