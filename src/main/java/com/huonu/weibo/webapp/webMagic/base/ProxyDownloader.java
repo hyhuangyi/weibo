@@ -1,5 +1,6 @@
 package com.huonu.weibo.webapp.webMagic.base;
 
+import com.huonu.weibo.webapp.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -27,13 +28,6 @@ import java.util.Random;
 @Component
 @Slf4j
 public class ProxyDownloader {
-
-    private static RedisTemplate redisTemplate;
-
-    @Autowired
-    public  void setRedisTemplate(RedisTemplate redisTemplate) {
-        ProxyDownloader.redisTemplate = redisTemplate;
-    }
 
     public static HttpClientDownloader newIpDownloader() {
         HttpClientDownloader downloader = new HttpClientDownloader() {
@@ -92,20 +86,24 @@ public class ProxyDownloader {
                 return charset;
             }
         };
-//        downloader.setProxyProvider(SimpleProxyProvider.from(new Proxy("183.167.217.152",63000)));
+        downloader.setProxyProvider(SimpleProxyProvider.from(new Proxy("183.167.217.152",63000)));
         return downloader;
     }
-    /**从redis代理池里随机取ip*/
+    /**
+     * 从redis代理池里随机取ip
+     */
     static String[] newIp() {
+        String[] ips = new String[]{"183.167.217.152", "63000"};
         try {
-            Long size = redisTemplate.opsForList().size("ip");
-            String ip = redisTemplate.opsForList().index("ip", new Random().nextInt(size.intValue())).toString();
-            log.info("获取ip===========>" + ip);
-            String[] ips = ip.split(":");
+            Long size = RedisUtil.lGetListSize("ip");
+            if (size != 0) {
+                String ip = RedisUtil.lGetIndex("ip", new Random().nextInt(size.intValue())).toString();
+                ips = ip.split(":");
+            }
             return ips;
         } catch (Exception e) {
             log.error("ProxyDownloader=>newIp");
-            return new String[]{"183.167.217.152","63000"};
+            return ips;
         }
     }
 }

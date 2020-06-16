@@ -1,6 +1,6 @@
-package com.huonu.weibo.webapp.webMagic.base;
+package com.huonu.weibo.webapp.schedule;
 
-
+import com.huonu.weibo.webapp.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -8,32 +8,31 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.*;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 /**
- *IP代理池
+ * IP代理池
  */
-//@Component
 @Slf4j
+@Component
 public class IpPool {
-
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Scheduled(cron = "*/20 * * * * ?")
     void update() {
-        List<String> range = redisTemplate.opsForList().range("ip", 0, -1);
-        for (String ip : range) {
-            if (ifUseless(ip)) {
+        List<Object> range = RedisUtil.lGet("ip", 0, -1);
+        for (Object ip : range) {
+            if (ifUseless(ip.toString())) {
                 log.error(ip + "  从redis移除");
-                redisTemplate.opsForList().remove("ip", 0, ip);
+                RedisUtil.lRemove("ip", 0, ip);
             }
         }
     }
@@ -52,12 +51,12 @@ public class IpPool {
                 if (StringUtils.isNotBlank(tdChilds.text()) && StringUtils.isNotBlank(tcpd.text())) {
                     string = tdChilds.text() + ":" + tcpd.text();
                     if (!ifUseless(string)) {
-                        List<String> range = redisTemplate.opsForList().range("ip", 0, -1);
+                        List<Object> range = RedisUtil.lGet("ip", 0, -1);
                         if (!range.contains(string)) {
-                           log.info(string + "  存进redis");
-                            if (redisTemplate.opsForList().size("ip") > 100)
-                                redisTemplate.opsForList().rightPopAndLeftPush("ip", string);
-                            else redisTemplate.opsForList().leftPush("ip", string);
+                            log.info(string + "  存进redis");
+                            if (RedisUtil.lGetListSize("ip") > 100)
+                                RedisUtil.lLeftPushAndRightPop("ip", string);
+                            else RedisUtil.lLeftPush("ip", string);
                         }
                     }
                 }
@@ -69,6 +68,7 @@ public class IpPool {
 
     /**
      * 无效的ip 返回true 有效的ip返回false
+     *
      * @param ip
      * @return
      */
@@ -89,7 +89,7 @@ public class IpPool {
             }
             String s = IOUtils.toString(in);
             if (s.indexOf("baidu") > 0) {
-                log.info(proxy+"有效");
+                log.info(proxy + "有效");
                 return false;
             }
             return true;
@@ -97,7 +97,6 @@ public class IpPool {
             return true;
         }
     }
-
 }
 
 
