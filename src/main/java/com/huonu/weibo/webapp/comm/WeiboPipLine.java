@@ -13,6 +13,6 @@ public class WeiboPipLine extends FilePersistentBase implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         //拿到数据 可以存redis或者mysql
-       log.info("hyzx"+resultItems.get("list"));
+       log.info(resultItems.get("list"));
     }
 }
