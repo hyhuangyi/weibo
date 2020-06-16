@@ -15,8 +15,6 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -102,7 +100,7 @@ public class Weibo implements PageProcessor {
     public static void main(String[] args) {
         Spider.create(new Weibo()).addUrl("https://s.weibo.com/weibo?q=%23教育部要求严格国际学生申请资格%23&Refer=SWeibo_box").
                 addPipeline(new WeiboPipLine())
-                .setDownloader(Downloader.newIpDownloader())
+                .setDownloader(ProxyDownloader.newIpDownloader())
                 .thread(1).runAsync();
     }
 }

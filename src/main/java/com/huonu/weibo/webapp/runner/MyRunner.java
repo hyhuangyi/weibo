@@ -20,12 +20,12 @@ public class MyRunner implements CommandLineRunner {
             Thread.sleep(30*1000);
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1")
                     .addPipeline(new CSDNPipLine())
-                    .setDownloader(Downloader.newIpDownloader())
+                    .setDownloader(ProxyDownloader.newIpDownloader())
                     .thread(3).runAsync();
 
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/2")
                     .addPipeline(new CSDNPipLine())
-                    .setDownloader(Downloader.newIpDownloader())
+                    .setDownloader(ProxyDownloader.newIpDownloader())
                     .thread(3).runAsync();
         }
     }

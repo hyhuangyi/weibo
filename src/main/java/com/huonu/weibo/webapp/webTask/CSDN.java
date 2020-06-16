@@ -34,7 +34,7 @@ public class CSDN implements PageProcessor {
             Thread.sleep(30*1000);
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1").
                     addPipeline(new CSDNPipLine())
-                    .setDownloader(Downloader.newIpDownloader())
+                    .setDownloader(ProxyDownloader.newIpDownloader())
                     .thread(3).runAsync();
         }
     }
