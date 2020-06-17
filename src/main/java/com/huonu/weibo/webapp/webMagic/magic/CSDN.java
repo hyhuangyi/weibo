@@ -7,11 +7,14 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
+
 import java.util.List;
+
 @Slf4j
 public class CSDN implements PageProcessor {
 
     private Site site = Site.me().setCharset("UTF-8").setRetryTimes(6).setCycleRetryTimes(10).setSleepTime(100).setUserAgent(Agents.getRandom());
+
     @Override
     public Site getSite() {
         return site;
@@ -28,15 +31,11 @@ public class CSDN implements PageProcessor {
             page.setSkip(true);//设置skip之后，这个页面的结果不会被Pipeline处理
         }
     }
-    public static void main(String[] args)throws Exception{
-        int num=0;
-        while (true){
-            log.error("第"+ ++num+"次执行");
-            Thread.sleep(30*1000);
-            Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1").
-                    addPipeline(new ConsolePipeline())
-                    .setDownloader(ProxyDownloader.newIpDownloader())
-                    .thread(3).runAsync();
-        }
+
+    public static void main(String[] args) throws Exception {
+        Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1").
+                addPipeline(new ConsolePipeline())
+                .setDownloader(ProxyDownloader.newIpDownloader())
+                .thread(3).runAsync();
     }
 }
