@@ -1,11 +1,11 @@
 package com.huonu.weibo.webapp.webMagic.magic;
 
 import com.huonu.weibo.webapp.webMagic.base.*;
-import com.huonu.weibo.webapp.webMagic.pipLine.CSDNPipLine;
 import lombok.extern.slf4j.Slf4j;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 import java.util.List;
 @Slf4j
@@ -34,7 +34,7 @@ public class CSDN implements PageProcessor {
             log.error("第"+ ++num+"次执行");
             Thread.sleep(30*1000);
             Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1").
-                    addPipeline(new CSDNPipLine())
+                    addPipeline(new ConsolePipeline())
                     .setDownloader(ProxyDownloader.newIpDownloader())
                     .thread(3).runAsync();
         }

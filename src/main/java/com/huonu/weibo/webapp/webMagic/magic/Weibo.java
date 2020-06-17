@@ -1,7 +1,7 @@
 package com.huonu.weibo.webapp.webMagic.magic;
 
 import com.huonu.weibo.webapp.webMagic.base.*;
-import com.huonu.weibo.webapp.webMagic.pipLine.WeiboPipLine;
+import com.huonu.weibo.webapp.webMagic.pipLine.WeiboSearchPipLine;
 import com.huonu.weibo.webapp.util.DateUtils;
 import com.huonu.weibo.webapp.util.RegexUtils;
 import lombok.Data;
@@ -100,7 +100,7 @@ public class Weibo implements PageProcessor {
 
     public static void main(String[] args) {
         Spider.create(new Weibo()).addUrl("https://s.weibo.com/weibo?q=%23教育部要求严格国际学生申请资格%23&Refer=SWeibo_box").
-                addPipeline(new WeiboPipLine())
+                addPipeline(new WeiboSearchPipLine())
                 .setDownloader(ProxyDownloader.newIpDownloader())
                 .thread(1).runAsync();
     }

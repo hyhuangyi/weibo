@@ -9,7 +9,7 @@ import us.codecraft.webmagic.utils.FilePersistentBase;
 
 @Component
 @Slf4j
-public class WeiboPipLine extends FilePersistentBase implements Pipeline {
+public class WeiboSearchPipLine extends FilePersistentBase implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         //拿到数据 可以存redis或者mysql
