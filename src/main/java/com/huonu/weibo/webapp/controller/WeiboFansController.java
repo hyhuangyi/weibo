@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import us.codecraft.webmagic.Spider;
+
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -37,6 +39,14 @@ public class WeiboFansController {
         Set set= RedisUtil.sGet("user");
         System.out.println(set.size());
         return set;
+    }
+
+    @GetMapping("/topics/list")
+    @ApiOperation("获取redis粉丝列表")
+    public List<Object> getTopics(){
+        List list= RedisUtil.lGet("topic",0,-1);
+        System.out.println(list.size());
+        return list;
     }
 
     /**
