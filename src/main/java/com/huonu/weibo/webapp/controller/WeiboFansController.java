@@ -4,6 +4,8 @@ import com.huonu.weibo.webapp.util.RedisUtil;
 import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
 import com.huonu.weibo.webapp.webMagic.magic.MobileFans;
 import com.huonu.weibo.webapp.webMagic.pipLine.MobileFansPipLIne;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ public class WeiboFansController {
      * @return
      */
     @GetMapping("/fans/list")
+    @ApiOperation("获取redis粉丝列表")
     public Set<Object> getUsers(){
         Set set= RedisUtil.sGet("user");
         System.out.println(set.size());
@@ -31,8 +34,9 @@ public class WeiboFansController {
      * @return 布尔类型
      */
     @GetMapping("fans/handle")
-    public boolean handle(@RequestParam(defaultValue = "1") String type,
-                          @RequestParam(defaultValue = "4516021828714033") String id){
+    @ApiOperation("爬取点赞和转发粉丝")
+    public boolean handle(@RequestParam(defaultValue = "1") @ApiParam("1点赞 2转发") String type,
+                          @RequestParam(defaultValue = "4516021828714033") @ApiParam("微博id") String id){
         String reposts="https://m.weibo.cn/api/statuses/repostTimeline?page=1&id="+id;
         String attitudes="https://m.weibo.cn/api/attitudes/show?page=1&id="+id;
         //String comments="https://m.weibo.cn/comments/hotflow?id=4516021828714033&mid=4516021828714033&max_id_type=1";
