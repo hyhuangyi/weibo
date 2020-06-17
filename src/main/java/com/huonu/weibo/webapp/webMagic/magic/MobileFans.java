@@ -1,21 +1,16 @@
 package com.huonu.weibo.webapp.webMagic.magic;
 
 import com.huonu.weibo.webapp.webMagic.base.Agents;
-import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
-import com.huonu.weibo.webapp.webMagic.pipLine.MobileFansPipLIne;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-
 import java.util.List;
 
 /**
- * 微博手机端点赞
+ * 微博手机端粉丝（点赞/转发）
  */
 public class MobileFans implements PageProcessor {
     private Site site = Site.me().setCharset("UTF-8").setRetryTimes(6).setCycleRetryTimes(10).setSleepTime(1000).setUserAgent(Agents.getRandom()).addCookie("cookie","ALF=1593086936; _T_WM=94541653860; SCF=AiV16yxZCyVi-LYiFkIbGilv8FWdeox2wxQ8AudRx27kZESmvGXzPdQBxBmZKr6LS3gm0t6xnmWdMKiRPNqKFl8.; SUB=_2A25zyXgjDeRhGeNK61YW9yfOyzyIHXVRMhhrrDV6PUJbktANLRShkW1NSWgnEI6Yu7MMREhv31SUata4z5oK0Bg6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W51Rx-mMQz6R6cHcQEO5dkI5JpX5K-hUgL.Fo-XehBNS0.Eeh52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoMfSh5XS0M4eo57; SUHB=0U1Jk6nD0H9z3V; SSOLoginState=1590495347; MLOGIN=1; M_WEIBOCN_PARAMS=luicode%3D20000174; __guid=78840338.122118085663280260.1590495394219.12; monitor_count=1");
-
     @Override
     public Site getSite() {
         return site;
@@ -37,25 +32,4 @@ public class MobileFans implements PageProcessor {
             page.putField("users",data);
         }
     }
-
-    public static void main(String[] args) {
-        String reposts="https://m.weibo.cn/api/statuses/repostTimeline?id=4516021828714033&page=1";
-        String attitudes="https://m.weibo.cn/api/attitudes/show?id=4516021828714033&page=1";
-        String comments="https://m.weibo.cn/comments/hotflow?id=4516021828714033&mid=4516021828714033&max_id_type=1";
-        Spider.create(new MobileFans()).addUrl(reposts).
-                addPipeline(new MobileFansPipLIne())
-                .setDownloader(ProxyDownloader.newIpDownloader())
-                .thread(1).runAsync();
-
-        Spider.create(new MobileFans()).addUrl(attitudes).
-                addPipeline(new MobileFansPipLIne())
-                .setDownloader(ProxyDownloader.newIpDownloader())
-                .thread(1).runAsync();
-
-        Spider.create(new MobileFans()).addUrl(comments).
-                addPipeline(new MobileFansPipLIne())
-                .setDownloader(ProxyDownloader.newIpDownloader())
-                .thread(1).runAsync();
-    }
-
 }

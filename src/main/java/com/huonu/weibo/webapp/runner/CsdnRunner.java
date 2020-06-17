@@ -11,7 +11,7 @@ import us.codecraft.webmagic.pipeline.ConsolePipeline;
 
 @RestController
 @Slf4j
-@Order(2)
+@Order(1)
 public class CsdnRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
