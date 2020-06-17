@@ -16,7 +16,7 @@ import java.util.*;
  */
 @Component
 @Slf4j
-public class MobileAttitudesPipLIne extends FilePersistentBase implements Pipeline {
+public class MobileFansPipLIne extends FilePersistentBase implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         List<String> list = resultItems.get("users");
