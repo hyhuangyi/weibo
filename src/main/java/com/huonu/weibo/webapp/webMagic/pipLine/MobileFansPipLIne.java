@@ -28,7 +28,7 @@ public class MobileFansPipLIne extends FilePersistentBase implements Pipeline {
                 Map map=new HashMap();
                 map.put("id",id);
                 map.put("name",name);
-                RedisUtil.lSet("user",map);
+                RedisUtil.sSet("user",JSON.toJSON(map).toString());
             }
         }
     }

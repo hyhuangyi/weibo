@@ -5,6 +5,7 @@ import com.huonu.weibo.webapp.webMagic.magic.MobileFans;
 import com.huonu.weibo.webapp.webMagic.pipLine.MobileFansPipLIne;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestController;
 import us.codecraft.webmagic.Spider;
 
