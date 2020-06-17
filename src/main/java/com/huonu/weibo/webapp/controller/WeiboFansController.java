@@ -4,6 +4,7 @@ import com.huonu.weibo.webapp.util.RedisUtil;
 import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
 import com.huonu.weibo.webapp.webMagic.magic.MobileFans;
 import com.huonu.weibo.webapp.webMagic.pipLine.MobileFansPipLIne;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import us.codecraft.webmagic.Spider;
 import java.util.Set;
 
 @RestController
+@Api(tags = "微博粉丝")
 public class WeiboFansController {
 
     /**
