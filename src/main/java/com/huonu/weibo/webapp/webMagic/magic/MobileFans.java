@@ -21,7 +21,7 @@ public class MobileFans implements PageProcessor {
 
     @Override
     public Site getSite() {
-        return Site.me().setCharset("UTF-8").setRetryTimes(6).setCycleRetryTimes(10).setSleepTime(1000).setUserAgent(Agents.getRandom()).addCookie("cookie",cookie);
+        return Site.me().setCharset("UTF-8").setRetryTimes(6).setCycleRetryTimes(10).setSleepTime(3000).setUserAgent(Agents.getRandom()).addCookie("cookie",cookie);
     }
 
     @Override
