@@ -4,8 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.huonu.weibo.webapp.webMagic.base.*;
 import com.huonu.weibo.webapp.util.DateUtils;
 import com.huonu.weibo.webapp.util.RegexUtils;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import com.huonu.weibo.webapp.webMagic.pojo.WbTopic;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 import org.jsoup.Jsoup;
@@ -20,7 +19,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class Weibo implements PageProcessor {
+public class WeiboSearch implements PageProcessor {
     //private Site site = Site.me().setCharset("UTF-8").setRetryTimes(6).setCycleRetryTimes(10).setSleepTime(1000).setUserAgent(Agents.getRandom()).addCookie("cookie","ALF=1593086936; _T_WM=94541653860; SCF=AiV16yxZCyVi-LYiFkIbGilv8FWdeox2wxQ8AudRx27kZESmvGXzPdQBxBmZKr6LS3gm0t6xnmWdMKiRPNqKFl8.; SUB=_2A25zyXgjDeRhGeNK61YW9yfOyzyIHXVRMhhrrDV6PUJbktANLRShkW1NSWgnEI6Yu7MMREhv31SUata4z5oK0Bg6; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W51Rx-mMQz6R6cHcQEO5dkI5JpX5K-hUgL.Fo-XehBNS0.Eeh52dJLoIp7LxKML1KBLBKnLxKqL1hnLBoMfSh5XS0M4eo57; SUHB=0U1Jk6nD0H9z3V; SSOLoginState=1590495347; MLOGIN=1; M_WEIBOCN_PARAMS=luicode%3D20000174; __guid=78840338.122118085663280260.1590495394219.12; monitor_count=1");
 
     @Value("${s.weibo.com.cookie}")
@@ -97,20 +96,4 @@ public class Weibo implements PageProcessor {
         List<String> url=page.getHtml().xpath("//*[@id=\"pl_feedlist_index\"]/div[2]/div/a[@class='next']/@href").all();
         page.addTargetRequests(url);
     }
-}
-@Data
-@Accessors(chain = true)
-class WbTopic{
-    private String uid; //微博uid
-    private String name; //微博名
-    private String content;//内容
-    private String forward;//转发
-    private String upvote;//点赞
-    private String comment;//评论
-    private String topic;//话题
-    private String source;//发布工具
-    private String time;//时间
-    private String pics;//图片
-    private String id; //微博id
-    private String bid; //详情id
 }

@@ -3,7 +3,7 @@ package com.huonu.weibo.webapp.controller;
 import com.huonu.weibo.webapp.util.RedisUtil;
 import com.huonu.weibo.webapp.webMagic.base.ProxyDownloader;
 import com.huonu.weibo.webapp.webMagic.magic.MobileFans;
-import com.huonu.weibo.webapp.webMagic.magic.Weibo;
+import com.huonu.weibo.webapp.webMagic.magic.WeiboSearch;
 import com.huonu.weibo.webapp.webMagic.pipLine.MobileFansPipLine;
 import com.huonu.weibo.webapp.webMagic.pipLine.WeiboSearchPipLine;
 import io.swagger.annotations.Api;
@@ -24,7 +24,7 @@ public class WeiboFansController {
     @Autowired
     private MobileFans mobileFans;
     @Autowired
-    private Weibo weibo;
+    private WeiboSearch weiboSearch;
     @Autowired
     private MobileFansPipLine mobileFansPipLine;
     @Autowired
@@ -79,7 +79,7 @@ public class WeiboFansController {
     @ApiOperation("微博热搜")
     public boolean topics(@ApiParam("热搜关键词")@RequestParam(defaultValue = "教育部要求严格国际学生申请资格") String key){
         String baseUrl="https://s.weibo.com/weibo?q=%23"+key+"%23";
-        Spider.create(weibo).addUrl(baseUrl).
+        Spider.create(weiboSearch).addUrl(baseUrl).
                 addPipeline(weiboSearchPipLine)
                 .setDownloader(ProxyDownloader.newIpDownloader())
                 .thread(1).runAsync();
