@@ -30,11 +30,10 @@ public class CSDN implements PageProcessor {
             page.setSkip(true);//设置skip之后，这个页面的结果不会被Pipeline处理
         }
     }
-
     public static void main(String[] args) throws Exception {
         Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1").
                 addPipeline(new ConsolePipeline())
                 .setDownloader(ProxyDownloader.newIpDownloader())
-                .thread(3).runAsync();
+                .thread(1).runAsync();
     }
 }
