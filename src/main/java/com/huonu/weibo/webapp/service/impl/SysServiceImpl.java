@@ -21,11 +21,11 @@ public class SysServiceImpl implements ISysService {
                     e.printStackTrace();
                 }
             }
-            Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_35529931/article/list/1")
+            Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/1")
                     .addPipeline(new ConsolePipeline())
                     .thread(1).runAsync();
 
-            Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_35529931/article/list/2")
+            Spider.create(new CSDN()).addUrl("https://blog.csdn.net/qq_37209293/article/list/2")
                     .addPipeline(new ConsolePipeline())
                     .thread(1).runAsync();
             if (!isCycle) {
